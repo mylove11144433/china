@@ -16,4 +16,85 @@ print("%12s"%("Marks 3 :"), stMarks3)
 print("%12s"%("Total :"), stMarks1+stMarks2+stMarks3)
 print("%12s"%("Percent :"), "%.2f"%((stMarks1+stMarks2+stMarks3)/3))
 print("=========================")
-1.
+
+
+1.2 Develop a program to read the name and year of birth of a person. Display whether the 
+person is a senior citizen or not.
+
+from datetime import date
+perName = input("Enter the name of the person : ")
+perDOB = int(input("Enter his year of birth : "))
+curYear = date.today().year
+perAge = curYear - perDOB
+if (perAge > 60):
+    print(perName, "aged", perAge, "years is a Senior Citizen.")
+else:
+    print(perName, "aged", perAge, "years is not a Senior Citizen.")
+
+2.1 Develop a program to generate Fibonacci sequence of length (N). Read N from the console.
+
+num = int(input("Enter the Fibonacci sequence length to be generated : "))
+firstTerm = 0
+secondTerm = 1
+print("The Fibonacci series with", num, "terms is :")
+print(firstTerm, secondTerm, end=" ")
+for i in range(2,num):
+    curTerm = firstTerm + secondTerm
+    print(curTerm, end=" ")
+    firstTerm = secondTerm
+    secondTerm = curTerm
+    print()
+
+
+2.2 Write a function to calculate factorial of a number. Develop a program to compute binomial 
+ coefficient (Given N and R).
+
+def fact(num):
+    if num == 0:
+        return 1
+    else:
+        return num * fact(num-1)
+
+n = int(input("Enter the value of N : "))
+r = int(input("Enter the value of R (R cannot be negative or greater than N): "))
+nCr = fact(n)/(fact(r)*fact(n-r))
+print(n,'C',r," = ","%d"%nCr, sep="")
+
+
+3) 3. Read N numbers from the console and create a list. Develop a program to print mean, variance
+and standard deviation with suitable messages.
+
+from math import sqrt
+myList = []
+num = int(input("Enter the number of elements in your list : "))
+for i in range(num):
+    val = int(input("Enter the element : "))
+    myList.append(val)
+    print('The length of list1 is', len(myList))
+    print('List Contents', myList)
+total = 0
+for elem in myList:
+    total += elem
+    mean = total / num
+total = 0
+for elem in myList:
+    total += (elem - mean) * (elem - mean)
+variance = total / num
+stdDev = sqrt(variance)
+print("Mean =", mean)
+print("Variance =", variance)
+print("Standard Deviation =", "%.2f"%stdDev)
+
+4. Read a multi-digit number (as chars) from the console. Develop a program to print the frequency of 
+each digit with suitable message.
+
+num = input("Enter a number : ")
+print("The number entered is :", num)
+uniqDig = set(num)
+for elem in uniqDig:
+    print(elem, "occurs", num.count(elem), "times")
+
+
+
+
+
