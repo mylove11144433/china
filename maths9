@@ -1,0 +1,34 @@
+#9)a)Write the Python code and Execute the program to evaluate ∫from 0 t0 6 dx/1+x^2
+# using i) Trapezoidal rule ii) Simpson’s 1/3 rd rule iii) Simpson’s 3/8 rule
+from numpy import*
+a=0
+b=6
+p=6
+n=7
+h=(b-a)/p
+x=linspace(a,b,n)
+f=(1/(1+x**2))
+for i in range(0,n):
+    print(round(f[i],ndigits=4))
+TR=round((h/2)*(f[0]+2*sum(f[1:n-1])+f[n-1]),ndigits=4)
+S13=round((h/3)*((f[0]+f[n-1])+4*sum(f[1:n-1:2]) +2*sum(f[2:n-1:2])), ndigits=4)
+S38=round((3*h/8)*((f[0]+f[n-1])+2*sum(f[3:n-2:3]) +3*sum(f[1:n:3]+(f[2:n-1:3]))),
+ndigits=4)
+print("The required integral by Trapezoidal Rule is",TR)
+print("The required integral by Simpson’s 1/3 Rule is",S13)
+print("The required integral by Simpson’s 3/8 Rule is :",S38)
+
+#9)b) Solve the PDE, xp + yq = z, where z = f(x, y)
+from sympy . solvers .pde import pdsolve
+from sympy import Function , Eq ,cot , classify_pde , pprint
+from sympy .abc import x, y, a
+f = Function ('f')
+z = f(x, y)
+zx = z.diff (x)
+zy = z.diff (y)
+eq = Eq(x*zx+y*zy , z)
+pprint (eq)
+print("\n")
+soln = pdsolve (eq ,z)
+pprint( soln )
+
