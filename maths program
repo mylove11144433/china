@@ -1,1 +1,21 @@
+#1)a)Write the Python code and Execute the program to find gradient x^2yz
+from sympy.vector import*
+from sympy import symbols
+N=CoordSys3D('')
+f=N.x**2*(N.y)*(N.z)
+print("\n The Given scalar point function is\n")
+display(f)
+delop=Del()
+display(delop(f))
+gradf=gradient(f)
+print("\n Gradient of {f} is \n")
+display(gradf)
+
+#1)b)Write the Python code and Execute :: (4 D2- 4D -3)y = e^2x
+from sympy import*
+x=symbols('x')
+y=Function('y')(x)
+DE=Eq(4*Derivative(y,x,2)-4*Derivative(y,x)-3*y,exp(2*x))
+GS=dsolve(DE)
+display(GS)
 
