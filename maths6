@@ -1,14 +1,3 @@
-#6)b) Using Green’s theorem, Evaluate ∮ [(3x + 4y) dx + (2x − 3y)dy]c
-#where C is the boundary of the circle x2 + y2 = 4
-from sympy import *
-var('x,y')
-p=3*x+4*y
-q=2*x-3*y
-f=diff(q,x)-diff(p,y)
-soln=integrate(f,[y,-sqrt(4-x**2),sqrt(4-x**2)],[x,-2,2])
-print("I=",soln)
-
-
 #6)a) Write the Python code and Execute the program to find divergence of F⃗ = xyz î+ 3x
 from sympy.physics.vector import *
 from sympy import var
@@ -22,3 +11,15 @@ display(F)
 G=G.subs([(v[0],x), (v[1],y), (v[2],z)])
 print("\n Curl of F=")
 display(G)
+
+#6)b) Using Green’s theorem, Evaluate ∮ [(3x + 4y) dx + (2x − 3y)dy]c
+#where C is the boundary of the circle x2 + y2 = 4
+from sympy import *
+var('x,y')
+p=3*x+4*y
+q=2*x-3*y
+f=diff(q,x)-diff(p,y)
+soln=integrate(f,[y,-sqrt(4-x**2),sqrt(4-x**2)],[x,-2,2])
+print("I=",soln)
+
+
