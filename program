@@ -96,7 +96,166 @@ for elem in uniqDig:
 
 5. Develop a program to print 10 most frequently appearing words in a text file. [Hint: Use dictionary 
 with distinct words and their frequency of occurrences. Sort the dictionary in the reverse order of 
-frequency and display dictionary slice of first 10 items
+frequency and display dictionary slice of first 10 items.
+
+    fp=open(r"C:\Users\91636\OneDrive\Desktop\New folder\labexam.txt","r")
+txt=fp.read()
+fp.close()
+d={}
+for words in txt.split():
+    d.setdefault(words,0)
+    d[words]+=1
+words=sorted(d.items(),key=lambda x:x[1],reverse=True)
+
+for i in range(10):
+    print(words[i][0],"appears",words[i][1],"times")
+
+6. Develop a program to sort the contents of a text file and write the sorted contents into a separate
+text file. [Hint: Use string methods strip(), len(), list methods sort(), append(), and file methods
+open(), readlines(), and write()].
+
+import os
+import sys
+filename=input("Enter the filename")
+if not os.path.isfile(filename):
+    print("Invalid file name")
+    sys.exit(0)
+fp=open(filename,"r")
+txtlines=fp.readlines()
+fp.close()
+contentlines=[]
+for line in txtlines:
+    lines=""
+    for ch in line:
+        if ch.isalnum():
+            lines+=ch
+    contentlines.append(lines)
+contentlines.sort()
+fp=open(r"C:\Users\91636\OneDrive\Desktop\New folder\labexam.txt","w")
+for line in contentlines:
+    fp.write(line)
+    fp.write("\n")
+fp.close()
+fp=open(r"C:\Users\91636\OneDrive\Desktop\New folder\labexam.txt","r")
+txtlines=fp.readlines()
+fp.close()
+print("="*40)
+print("Sorted contents of the file")
+print("="*40)
+for line in txtlines:
+    print(line)
+
+7. Develop a program to backing Up a given Folder (Folder in a current working directory) into a ZIP File 
+by using relevant modules and suitable methods.
+
+
+#write a python program to create a zip file of specified directory  backup folder
+import zipfile
+import os
+
+folder=input("Enter the name of the folder:")
+folder=os.path.abspath(folder)
+basename=os.path.basename(folder)
+zip_filename=basename+".zip"
+zip=zipfile.ZipFile(zip_filename,"w")
+
+for foldername,subfolders,filesnames in os.walk(folder):
+    print("Adding file to the {}".format(foldername))
+    for filename in filenames:
+        file_path=os.path.join(foldername,filename)
+        zp.write(file_path,os.path.relpath(file_path,folder))
+zip.close()
+print("ZIP FILE created")
+
+8. Write a function named DivExp which takes TWO parameters a, b and returns a value c (c=a/b).
+Write suitable assertion for a greater than 0 in function DivExp and raise an exception for when
+b=0. Develop a suitable program which reads two values from the console and calls a function
+DivExp.
+
+import sys 
+def Divexp(a,b):
+    assert a>0,"a should be greater than 0"
+    try:
+        c=a/b
+    except ZeroDivisionError:
+        print("value of be cannot be zero")
+        sys.exit(0)
+    else:
+        return c
+val1=int(input("Enter a value for a :"))
+val2=int(input("Enter a value for b :"))
+val3=Divexp(val1,val2)
+print(val1,"/",val2,"=",val3)
+
+9. Define a function which takes 2 objects representing complex numbers and returns new complex
+number with a addition of two complex numbers. Define a suitable class Complex to represent
+the complex number. Develop a program to read N (N greater than 2) complex numbers and to
+compute the addition of N complex numbers.
+
+class Complex:
+    def _init_(self,rp=0,ip=0):
+        self.rp=rp
+        self.ip=ip
+    def display(self):
+        print("({rp})+i({ip})")
+    def read(self):
+        rp=int(input("Enter real part"))
+        ip=int(input("Enter imaginary part"))
+        self.rp=rp
+        self.ip=ip
+    def addcomplex(self,other):
+        c3=Complex()
+        c3.rp=self.rp+other.rp
+        c3.ip=self.ip+other.ip
+        return c3
+    def _str_(self):
+        return f"({self.rp})+({self.ip})i"
+n=int(input("Enter the value of n"))
+print(f"Enter{n} complex number")
+lst=[]
+for i in range(n):
+    c=Complex()
+    c.read()
+    lst.append(c)
+print("The Entered complex number are")
+for i in lst:
+    print(i)
+c=Complex()
+for i in lst:
+    c=c.addcomplex(i)
+print(f"The added complex number is {c}")
+
+10. Develop a program that uses class Student which prompts the user to enter marks in three subjects 
+and calculates total marks, percentage and displays the score card details. [Hint: Use list to store the 
+marks in three subjects and total marks. Use init method to initialize name, USN and the lists to store 
+marks and total, Use getMarks() method to read marks into the list, and display() method to display 
+the score card details.
+
+#10
+class Student:
+    def _init_(self,usn='',name='',marks=[0,0,0,0]):
+        self.usn=usn
+        self.name=name
+        self.marks=marks
+    def  read_student(self):
+        self.usn=input("enter usn:")
+        self.name=input("enter student name:")
+        self.marks[0]=int(input("enter marks in sub 1:"))
+        self.marks[1]=int(input("enter marks in sub 2:"))
+        self.marks[2]=int(input("enter marks in sub 3:"))
+        self.marks[3]=(self.marks[0]+self.marks[1]+self.marks[2])/3
+    def display_student(self):
+        print("="*90)
+        print(f"{'USN':12s} {'Name':20s} {'Marks 1':^8} {'Marks 2':^8} {'Marks 3':^8} {'Total':^8} {'Percentage':^8} ")
+        print("="*90)
+        total=self.marks[0]+self.marks[1]+self.marks[2]
+        print(f"{self.usn:12s} {self.name:20s} {self.marks[0]:^8} {self.marks[1]:^8} {self.marks[2]:^8} {total:^8} {self.marks[3]:^8.2f}")
+s1=Student()
+s1.read_student()
+s1.display_student()
+
+
+
 
 
 
