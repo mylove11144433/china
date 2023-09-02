@@ -1,0 +1,21 @@
+#2)a)Write the Python code and Execute the program to find gradient of 3x^2yz
+from sympy.vector import*
+from sympy import symbols
+N=CoordSys3D('')
+f=3*N.x**2*(N.y)*(N.z)
+print("\n The Given scalar point function is\n")
+display(f)
+delop=Del()
+display(delop(f))
+gradf=gradient(f)
+print("\n Gradient of {f} is \n")
+display(gradf)
+
+
+#2)b) Write the Python code and Execute :: d2ydx2– 2 dydx+ y = cos3x
+from sympy import*
+x=symbols('x')
+y=Function('y')(x)
+DE=Eq(4*Derivative(y,x,2)-2*Derivative(y,x)+y,cos(3*x))
+GS=dsolve(DE)
+display(GS)
