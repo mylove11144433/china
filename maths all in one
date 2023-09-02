@@ -1,0 +1,278 @@
+#1)a)Write the Python code and Execute the program to find gradient x^2yz
+from sympy.vector import*
+from sympy import symbols
+N=CoordSys3D('')
+f=N.x**2*(N.y)*(N.z)
+print("\n The Given scalar point function is\n")
+display(f)
+delop=Del()
+display(delop(f))
+gradf=gradient(f)
+print("\n Gradient of {f} is \n")
+display(gradf)
+
+#1)b)Write the Python code and Execute :: (4 D2- 4D -3)y = e^2x
+from sympy import*
+x=symbols('x')
+y=Function('y')(x)
+DE=Eq(4*Derivative(y,x,2)-4*Derivative(y,x)-3*y,exp(2*x))
+GS=dsolve(DE)
+display(GS)
+
+
+#2)a)Write the Python code and Execute the program to find gradient of 3x^2yz
+from sympy.vector import*
+from sympy import symbols
+N=CoordSys3D('')
+f=3*N.x**2*(N.y)*(N.z)
+print("\n The Given scalar point function is\n")
+display(f)
+delop=Del()
+display(delop(f))
+gradf=gradient(f)
+print("\n Gradient of {f} is \n")
+display(gradf)
+
+
+#2)b) Write the Python code and Execute :: d2ydx2– 2 dydx+ y = cos3x
+from sympy import*
+x=symbols('x')
+y=Function('y')(x)
+DE=Eq(Derivative(y,x,2)-2*Derivative(y,x)+y,cos(3*x))
+GS=dsolve(DE)
+display(GS)
+
+#3) a) Write the Python code and Execute the program to find gradient of x^2y^3z^4
+from sympy.vector import*
+from sympy import symbols
+N=CoordSys3D('')
+f=N.x**2*(N.y**3)*(N.z**4)
+print("\n The Given scalar point function is\n")
+display(f)
+delop=Del()
+display(delop(f))
+gradf=gradient(f)
+print("\n Gradient of {f} is \n")
+display(gradf)
+
+#3)b) Write the Python code and Execute :: d2ydx2 + y = sin2x
+from sympy import*
+x=symbols('x')
+y=Function('y')(x)
+DE=Eq(Derivative(y,x,2)+y,sin(2*x))
+GS=dsolve(DE)
+display(GS)
+
+#4)a)Write the Python code and Execute the program to find divergence of F⃗ = 2x^2z î− x
+from sympy.physics.vector import *
+from sympy import var
+var('x,y,z')
+v=ReferenceFrame('v')
+F=v[0]**2*v[1]*v.x+v[1]*v[2]**2*v.y+v[0]**2*v[2]*v.z
+G=divergence(F,v)
+F=F.subs([(v[0],x), (v[1],y), (v[2],z)])
+print("Given vector point function is ")
+display(F)
+G=G.subs([(v[0],x), (v[1],y), (v[2],z)])
+print("Divergence of F=")
+display(G)
+
+
+#4)b) Write the Python code and Execute :: d2ydx2 + 2 dydx+ y = x2 +2x
+from sympy import*
+x=symbols('x')
+y=Function('y')(x)
+DE=Eq(Derivative(y,x,2)+2*Derivative(y,x)+y,x**2+2*x)
+GS=dsolve(DE)
+display(GS)
+
+#5)a) Write the Python code and Execute the program to evaluate ∫ from 0 to 6 dx/(1+x)2 
+#i)Trapezoidal rule ii) Simpson’s 1/3 rd rule iii) Simpson’s 3/8 rule
+from numpy import*
+a=0
+b=6
+p=6
+n=7
+h=(b-a)/p
+x=linspace(a,b,n)
+f=(1/(1+x)**2)
+for i in range(0,n):
+    print(round(f[i],ndigits=4))
+TR=round((h/2)*(f[0]+2*sum(f[1:n-1])+f[n-1]),ndigits=4)
+S13=round((h/3)*((f[0]+f[n-1])+4*sum(f[1:n-1:2]) +2*sum(f[2:n-1:2])), ndigits=4)
+S38=round((h*3/8)*((f[0]+f[n-1])+2*sum(f[3:n-2:3]) +3*sum(f[1:n:3]+(f[2:n-1:3]))),ndigits=4)
+print("The required integral by Trapezoidal Rule is",TR)
+print("The required integral by Simpson’s 1/3 Rule is",S13)
+print("The required integral by Simpson’s 3/8 Rule is :",S38)
+
+#5)b) Using Green’s theorem, Evaluate ∮ [(xy + y2) dx + (x^2)dy]
+#where C is the closed curve bounded by y = x and y = x^2
+from sympy import *
+var('x,y')
+p=x*y + y**2
+q=x**2
+f=diff(q,x)-diff(p,y)
+soln=integrate(f,[y,x**2,x],[x,0,1])
+print("I=",soln)
+
+#6)a) Write the Python code and Execute the program to find divergence of F⃗ = xyz î+ 3x^y 
+from sympy.physics.vector import *
+from sympy import var
+var('x,y,z')
+v=ReferenceFrame('v')
+F=v[0]*v[1]*v[2]*v.x+3*v[1]*v[0]**2*v.y+(v[2]**2*v[0]-v[1]**2*v[2])*v.z
+G=divergence(F,v)
+F=F.subs([(v[0],x), (v[1],y), (v[2],z)])
+print("Given vector point function is ")
+display(F)
+G=G.subs([(v[0],x), (v[1],y), (v[2],z)])
+print("\n divergence of F=")
+display(G)
+
+#6)b) Using Green’s theorem, Evaluate ∮ [(3x + 4y) dx + (2x − 3y)dy]c
+#where C is the boundary of the circle x2 + y2 = 4
+from sympy import *
+var('x,y')
+p=3*x+4*y
+q=2*x-3*y
+f=diff(q,x)-diff(p,y)
+soln=integrate(f,[y,-sqrt(4-x**2),sqrt(4-x**2)],[x,-2,2])
+print("I=",soln)
+
+#7)a)Apply the Runge Kutta method to find the solution of dy/dx = 1 + (y/x) at
+# y(2) taking h = 0.2. Given that y(1) = 2.
+from sympy import *
+import numpy as np
+def RungeKutta(g,x0,h,y0,xn):
+    x,y= symbols ('x,y')
+    f=lambdify([x,y],g)
+    xt=x0+h
+    Y=[y0]
+    while xt<=xn:
+        k1=h*f(x0,y0)
+        k2=h*f(x0+h/2,y0+k1/2)
+        k3=h*f(x0+h/2,y0+k2/2)
+        k4=h*f(x0+h,y0+k3)
+        y1=y0+(1/6)*(k1+2*k2+2*k3+k4)
+        Y.append (y1)
+        x0=xt
+        y0=y1
+        xt=xt+h
+    return np.round (Y,2)
+RungeKutta('1+(y/x)',1 ,0.2,2,2) 
+
+#7)b) Write the Python code and Execute program to find curl of F=x^2yz î+ 2xy^2z ĵ+ xyz^k^
+from sympy.physics.vector import *
+from sympy import var
+var('x,y,z')
+v=ReferenceFrame('v')
+F=v[0]**2*v[1]*v[2]*v.x+2*v[0]*v[1]**2*v[2]*v.y+v[0]*v[1]*v[2]**2*v.z
+G=curl(F,v)
+F=F.subs([(v[0],x), (v[1],y), (v[2],z)])
+print("Given vector point function is ")
+display(F)
+G=G.subs([(v[0],x), (v[1],y), (v[2],z)])
+print("\n Curl of F=")
+display(G)
+
+#8)a)Write Python code and Execute the program to evaluate ∫0 to 1 √1 + x3 dx using
+#i)Simpson’s 1/3 rd ii)Trapezoidal rule iii)Simpson’s 3/8 rule
+from numpy import *
+a=0
+b=1
+p=6
+n=7
+h=(b-a)/p
+x=linspace(a,b,n)
+f=sqrt(1+x**3)
+for i in range(0,n):
+    print(round(f[i],ndigits=4))
+TR=round((h/2)*(f[0]+2*sum(f[1:n-1])+f[n-1]),ndigits=4)
+S13=round((h/3)*((f[0]+f[n-1])+4*sum(f[1:n-1:2]) +2*sum(f[2:n-1:2])),ndigits=4)
+S38=round((3*h/8)*((f[0]+f[n-1])+2*sum(f[3:n-2:3])+3*sum(f[1:n:3]+(f[2:n-1:3]))),ndigits=4)
+print("The required integral by Trapezoidal Rule is",TR)
+print("The required integral by Simpson’s 1/3 Rule is",S13)
+print("The required integral by Simpson’s 3/8 Rule is :",S38)
+
+
+#8)b)Write the Python code and Execute program to find curl of given vector point functi
+from sympy.physics.vector import *
+from sympy import var
+var('x,y,z')
+v=ReferenceFrame('v')
+F=v[0]*v[1]**2*v.x+2*v[0]**2*v[1]*v[2]*v.y-3*v[1]*v[2]**2*v.z
+G=curl(F,v)
+F=F.subs([(v[0],x), (v[1],y), (v[2],z)])
+print("Given vector point function is ")
+display(F)
+G=G.subs([(v[0],x), (v[1],y), (v[2],z)])
+print("\n Curl of F=")
+display(G)
+
+#9)a)Write the Python code and Execute the program to evaluate ∫from 0 t0 6 dx/1+x^2
+# using i) Trapezoidal rule ii) Simpson’s 1/3 rd rule iii) Simpson’s 3/8 rule
+from numpy import*
+a=0
+b=6
+p=6
+n=7
+h=(b-a)/p
+x=linspace(a,b,n)
+f=(1/(1+x**2))
+for i in range(0,n):
+    print(round(f[i],ndigits=4))
+TR=round((h/2)*(f[0]+2*sum(f[1:n-1])+f[n-1]),ndigits=4)
+S13=round((h/3)*((f[0]+f[n-1])+4*sum(f[1:n-1:2]) +2*sum(f[2:n-1:2])), ndigits=4)
+S38=round((3*h/8)*((f[0]+f[n-1])+2*sum(f[3:n-2:3]) +3*sum(f[1:n:3]+(f[2:n-1:3]))),
+ndigits=4)
+print("The required integral by Trapezoidal Rule is",TR)
+print("The required integral by Simpson’s 1/3 Rule is",S13)
+print("The required integral by Simpson’s 3/8 Rule is :",S38)
+
+#9)b) Solve the PDE, xp + yq = z, where z = f(x, y)
+from sympy . solvers .pde import pdsolve
+from sympy import Function , Eq ,cot , classify_pde , pprint
+from sympy .abc import x, y, a
+f = Function ('f')
+z = f(x, y)
+zx = z.diff (x)
+zy = z.diff (y)
+eq = Eq(x*zx+y*zy , z)
+pprint (eq)
+print("\n")
+soln = pdsolve (eq ,z)
+pprint( soln )
+
+#10)a) d)Write the Python code and Execute the program to evaluate ∫ from 0 to 1 dx/(1+x)
+#using i)Simpson’s 1/3 rd rule ii)Trapezoidal Rule iii)Simpson’s 3/8 rule
+from numpy import*
+a=0
+b=1
+p=6
+n=7
+h=(b-a)/p
+x=linspace(a,b,n)
+f=(1/(1+x))
+for i in range(0,n):
+    print(round(f[i],ndigits=4))
+TR=round((h/2)*(f[0]+2*sum(f[1:n-1])+f[n-1]),ndigits=4)
+S13=round((h/3)*((f[0]+f[n-1])+4*sum(f[1:n-1:2]) +2*sum(f[2:n-1:2])),ndigits=4)
+S38=round((3*h/8)*((f[0]+f[n-1])+2*sum(f[3:n-2:3]) +3*sum(f[1:n:3]+(f[2:n-1:3]))),ndigits=4)
+print("The required integral by Trapezoidal Rule is",TR)
+print("The required integral by Simpson’s 1/3 Rule is",S13)
+print("The required integral by Simpson’s 3/8 Rule is :",S38)
+
+
+#10)b)Write the Python code and Execute the program to find gradient x^2y+z
+from sympy.vector import*
+from sympy import symbols
+N=CoordSys3D('')
+f=N.x**2*(N.y)+(N.z)
+print("\n The Given scalar point function is\n")
+display(f)
+delop=Del()
+display(delop(f))
+gradf=gradient(f)
+print("\n Gradient of {f} is \n")
+display(gradf)====
+
