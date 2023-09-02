@@ -1,0 +1,33 @@
+#8)a)Write Python code and Execute the program to evaluate ∫0 to 1 √1 + x3 dx using
+#i)Simpson’s 1/3 rd ii)Trapezoidal rule iii)Simpson’s 3/8 rule
+from numpy import *
+a=0
+b=1
+p=6
+n=7
+h=(b-a)/p
+x=linspace(a,b,n)
+f=sqrt(1+x**3)
+for i in range(0,n):
+    print(round(f[i],ndigits=4))
+TR=round((h/2)*(f[0]+2*sum(f[1:n-1])+f[n-1]),ndigits=4)
+S13=round((h/3)*((f[0]+f[n-1])+4*sum(f[1:n-1:2]) +2*sum(f[2:n-1:2])),ndigits=4)
+S38=round((3*h/8)*((f[0]+f[n-1])+2*sum(f[3:n-2:3])+3*sum(f[1:n:3]+(f[2:n-1:3]))),ndigits=4)
+print("The required integral by Trapezoidal Rule is",TR)
+print("The required integral by Simpson’s 1/3 Rule is",S13)
+print("The required integral by Simpson’s 3/8 Rule is :",S38)
+
+
+#8)b)Write the Python code and Execute program to find curl of given vector point functi
+from sympy.physics.vector import *
+from sympy import var
+var('x,y,z')
+v=ReferenceFrame('v')
+F=v[0]*v[1]**2*v.x+2*v[0]**2*v[1]*v[2]*v.y-3*v[1]*v[2]**2*v.z
+G=curl(F,v)
+F=F.subs([(v[0],x), (v[1],y), (v[2],z)])
+print("Given vector point function is ")
+display(F)
+G=G.subs([(v[0],x), (v[1],y), (v[2],z)])
+print("\n Curl of F=")
+display(G)
