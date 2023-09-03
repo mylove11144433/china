@@ -3,7 +3,8 @@ from sympy.physics.vector import *
 from sympy import var
 var('x,y,z')
 v=ReferenceFrame('v')
-F=v[0]*v[1]*v[2]*v.x+3*v[1]*v[0]**2*v.y+(v[2]**2*v[0]-v[1]**2*v[2])*v.z
+F=v[0]*v[1]*v[2]*v.x+3*v[0]**2*v[1]*v[2]*v.y+(v[0]*v[2]**2-v[1]**2*v[2])*v.z
+G=divergence(F,v)
 G=divergence(F,v)
 F=F.subs([(v[0],x), (v[1],y), (v[2],z)])
 print("Given vector point function is ")
@@ -11,6 +12,7 @@ display(F)
 G=G.subs([(v[0],x), (v[1],y), (v[2],z)])
 print("\n divergence of F=")
 display(G)
+
 
 #6)b) Using Green’s theorem, Evaluate ∮ [(3x + 4y) dx + (2x − 3y)dy]c
 #where C is the boundary of the circle x2 + y2 = 4
